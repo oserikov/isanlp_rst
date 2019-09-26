@@ -8,7 +8,7 @@ class RSTTreePredictor:
         self.relation_predictor = relation_predictor
         self.label_predictor = label_predictor
         if self.label_predictor:
-            self.labels = self.label_predictor.classes_
+            self.labels = self.label_predictor._label_encoder.classes_
         self.genre = None
 
     def predict_label(self, features):
@@ -51,7 +51,6 @@ class CustomTreePredictor(RSTTreePredictor):
         pair = pd.DataFrame({
             'snippet_x': [left_node.text.strip()],
             'snippet_y': [right_node.text.strip()],
-            #'genre': self.genre
         })
 
         try:
